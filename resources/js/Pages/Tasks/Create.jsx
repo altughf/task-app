@@ -15,6 +15,7 @@ export default function Create() {
     return (
         <div className="max-w-xl mx-auto p-4">
             <h1 className="text-2xl font-bold mb-4">Yeni Görev Oluştur</h1>
+
             <form onSubmit={submit} className="space-y-4">
                 <div>
                     <label className="block text-sm font-medium text-gray-700">Görev Adı</label>
@@ -40,7 +41,9 @@ export default function Create() {
                 <button
                     type="submit"
                     disabled={processing}
-                    className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+                    className={`bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 ${
+                        processing ? 'opacity-50' : ''
+                    }`}
                 >
                     Kaydet
                 </button>
