@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class TaskController extends Controller
 {
@@ -19,7 +20,7 @@ class TaskController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Tasks/Create');
     }
 
     /**
