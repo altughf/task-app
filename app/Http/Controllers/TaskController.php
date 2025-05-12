@@ -59,7 +59,11 @@ class TaskController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $task = Task::findOrFail($id);
+
+        return Inertia::render('Tasks/Edit', [
+            'task' => $task
+        ]);
     }
 
     /**
@@ -67,7 +71,15 @@ class TaskController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+        ]);
+
+        $task = Task::findOrFail($id);
+        $task->update($validated);
+
+        return redirect()->route('tasks.index');
     }
 
     /**
