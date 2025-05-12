@@ -1,4 +1,5 @@
 import AppLayout from '@/Layouts/AppLayout';
+import { Link } from '@inertiajs/react';
 
 export default function Index({ tasks }) {
     return (
@@ -9,6 +10,15 @@ export default function Index({ tasks }) {
                     <li key={task.id} className="p-4 border border-gray-200 rounded shadow-sm">
                         <h2 className="text-lg font-semibold">{task.name}</h2>
                         <p className="text-gray-600">{task.description}</p>
+
+                        <div className="mt-2">
+                            <Link
+                                href={route('tasks.show', task.id)}
+                                className="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-200"
+                            >
+                                Aç
+                            </Link>
+                        </div>
                     </li>
                 ))}
             </ul>
