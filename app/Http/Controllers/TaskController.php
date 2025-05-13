@@ -24,7 +24,13 @@ class TaskController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Tasks/Create');
+        $statuses = ['pending', 'in_progress', 'completed', 'cancelled'];
+        $priorities = ['low', 'medium', 'high'];
+
+        return Inertia::render('Tasks/Create', [
+            'statuses' => $statuses,
+            'priorities' => $priorities,
+        ]);
     }
 
     /**
@@ -35,6 +41,9 @@ class TaskController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
+            'status' => 'required|in:pending,in_progress,completed,cancelled',
+            'priority' => 'required|in:low,medium,high',
+            'due_date' => 'nullable|date',
         ]);
 
         Task::create($validated);
@@ -60,9 +69,13 @@ class TaskController extends Controller
     public function edit(string $id)
     {
         $task = Task::findOrFail($id);
+        $statuses = ['pending', 'in_progress', 'completed', 'cancelled'];
+        $priorities = ['low', 'medium', 'high'];
 
         return Inertia::render('Tasks/Edit', [
-            'task' => $task
+            'task' => $task,
+            'statuses' => $statuses,
+            'priorities' => $priorities,
         ]);
     }
 
@@ -74,6 +87,9 @@ class TaskController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
+            'status' => 'required|in:pending,in_progress,completed,cancelled',
+            'priority' => 'required|in:low,medium,high',
+            'due_date' => 'nullable|date',
         ]);
 
         $task = Task::findOrFail($id);
