@@ -16,7 +16,16 @@ export default function Show() {
             <h1 className="text-3xl font-semibold text-gray-900">{task.name}</h1>
             <p className="mt-2 text-lg text-gray-700">{task.description}</p>
 
-            <div className="mt-6 flex items-center justify-between">
+            {/* Yeni Eklenen Bilgiler */}
+            <div className="mt-6 space-y-2 text-gray-800 text-sm">
+                <p><strong>Status:</strong> {task.status}</p>
+                <p><strong>Priority:</strong> {task.priority}</p>
+                <p><strong>Due Date:</strong> {task.due_date ? new Date(task.due_date).toLocaleString() : 'N/A'}</p>
+                <p><strong>Created At:</strong> {new Date(task.created_at).toLocaleString()}</p>
+                <p><strong>Updated At:</strong> {new Date(task.updated_at).toLocaleString()}</p>
+            </div>
+
+            <div className="mt-8 flex items-center justify-between">
                 <Link
                     href={route('tasks.index')}
                     className="bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 transition duration-200"

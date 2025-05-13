@@ -19,6 +19,14 @@ export default function Index({ tasks }) {
                         <h2 className="text-lg font-semibold">{task.name}</h2>
                         <p className="text-gray-600">{task.description}</p>
 
+                        <div className="mt-2">
+                            <p><strong>Status:</strong> {task.status}</p>
+                            <p><strong>Priority:</strong> {task.priority}</p>
+                            <p><strong>Due Date:</strong> {task.due_date ? new Date(task.due_date).toLocaleString() : 'N/A'}</p>
+                            <p><strong>Created At:</strong> {new Date(task.created_at).toLocaleString()}</p>
+                            <p><strong>Updated At:</strong> {new Date(task.updated_at).toLocaleString()}</p>
+                        </div>
+
                         <div className="mt-4 flex gap-2">
                             <Link
                                 href={route('tasks.show', task.id)}
