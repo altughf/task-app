@@ -8,7 +8,7 @@ export default function Create() {
 
     return (
         <div className="max-w-xl mx-auto p-4">
-            <h1 className="text-2xl font-bold mb-4">Yeni Görev Oluştur</h1>
+            <h1 className="text-2xl font-bold mb-4">Create Task</h1>
             <TaskForm onSubmit={handleSubmit} />
         </div>
     );

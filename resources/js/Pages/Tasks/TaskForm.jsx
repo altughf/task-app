@@ -1,4 +1,5 @@
 import { useForm } from '@inertiajs/react';
+import { Link } from '@inertiajs/react';
 
 export default function TaskForm({ task = null, onSubmit }) {
     const { data, setData, put, post, processing, errors } = useForm({
@@ -14,7 +15,7 @@ export default function TaskForm({ task = null, onSubmit }) {
     return (
         <form onSubmit={submit} className="space-y-4">
             <div>
-                <label className="block text-sm font-medium text-gray-700">Görev Adı</label>
+                <label className="block text-sm font-medium text-gray-700">Task Name</label>
                 <input
                     type="text"
                     value={data.name}
@@ -25,7 +26,7 @@ export default function TaskForm({ task = null, onSubmit }) {
             </div>
 
             <div>
-                <label className="block text-sm font-medium text-gray-700">Açıklama</label>
+                <label className="block text-sm font-medium text-gray-700">Description</label>
                 <textarea
                     value={data.description}
                     onChange={(e) => setData('description', e.target.value)}
@@ -41,8 +42,17 @@ export default function TaskForm({ task = null, onSubmit }) {
                     processing ? 'opacity-50' : ''
                 }`}
             >
-                Kaydet
+                Save
             </button>
+
+            <div className="pt-4">
+                <Link
+                    href={route('tasks.index')}
+                    className="bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 transition duration-200"
+                >
+                    Go Back
+                </Link>
+            </div>
         </form>
     );
 }
