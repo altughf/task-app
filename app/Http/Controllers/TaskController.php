@@ -99,6 +99,20 @@ class TaskController extends Controller
     }
 
     /**
+     * Status update the specified resource in storage.
+     */
+    public function status(Request $request, Task $task)
+    {
+        $validated = $request->validate([
+            'status' => 'required|in:pending,in_progress,completed,cancelled',
+        ]);
+
+        $task->update(['status' => $validated['status']]);
+
+        return redirect()->back()->with('message', 'Status updated successfully.');
+    }
+
+    /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)

@@ -1,5 +1,5 @@
 import AppLayout from '@/Layouts/AppLayout';
-import { Link, useForm } from '@inertiajs/react';
+import { Link, useForm, router } from '@inertiajs/react';
 
 export default function Index({ tasks }) {
     const { delete: destroy } = useForm();
@@ -8,6 +8,21 @@ export default function Index({ tasks }) {
         if (confirm('Are you sure you want to delete this task?')) {
             destroy(route('tasks.destroy', id));
         }
+    };
+
+    const handleStatusChange = (taskId, newStatus) => {
+        router.patch(route('tasks.status', taskId), {
+            status: newStatus,
+        }, {
+            preserveScroll: true,
+            only: ['tasks'],
+            onSuccess: () => {
+                console.log('Status updated successfully.');
+            },
+            onError: (errors) => {
+                console.error('Validation failed:', errors);
+            }
+        });
     };
 
     return (
@@ -20,7 +35,21 @@ export default function Index({ tasks }) {
                         <p className="text-gray-600">{task.description}</p>
 
                         <div className="mt-2">
-                            <p><strong>Status:</strong> {task.status}</p>
+
+                            <label className="block mt-2">
+                                <strong>Status:</strong>
+                                <select
+                                    value={task.status}
+                                    onChange={(e) => handleStatusChange(task.id, e.target.value)}
+                                    className="ml-2 border border-gray-300 rounded w-40"
+                                >
+                                    <option value="pending">Pending</option>
+                                    <option value="in_progress">In Progress</option>
+                                    <option value="completed">Completed</option>
+                                    <option value="cancelled">Cancelled</option>
+                                </select>
+                            </label>
+
                             <p><strong>Priority:</strong> {task.priority}</p>
                             <p><strong>Due Date:</strong> {task.due_date ? new Date(task.due_date).toLocaleString() : 'N/A'}</p>
                             <p><strong>Created At:</strong> {new Date(task.created_at).toLocaleString()}</p>
