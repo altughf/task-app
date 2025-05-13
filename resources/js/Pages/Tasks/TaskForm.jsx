@@ -3,20 +3,12 @@ import { Link } from '@inertiajs/react';
 
 export default function TaskForm({ task = null, statuses = [], priorities = [], onSubmit }) {
 
-    // Helper function > Convert UTC Date & Time
-    function formatDateTime(datetimeString) {
-        const date = new Date(datetimeString);
-        const offset = date.getTimezoneOffset();
-        const localDate = new Date(date.getTime() - offset * 60 * 1000);
-        return localDate.toISOString().slice(0, 16);
-    }
-
     const { data, setData, put, post, processing, errors } = useForm({
         name: task?.name || '',
         description: task?.description || '',
         status: task?.status || 'pending',
         priority: task?.priority || 'medium',
-        due_date: task?.due_date ? formatDateTime(task.due_date) : '',
+        due_date: task?.due_date || '',
     });
 
     const submit = (e) => {
