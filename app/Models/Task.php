@@ -16,4 +16,10 @@ class Task extends Model
         'priority',
         'due_date',
     ];
+
+    // many-to-many
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class, 'task_category');
+    }
 }

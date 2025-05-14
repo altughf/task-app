@@ -1,15 +1,23 @@
 import { useForm } from '@inertiajs/react';
 import { Link } from '@inertiajs/react';
 
-export default function TaskForm({ task = null, statuses = [], priorities = [], onSubmit }) {
-
+export default function TaskForm({ task = null, statuses = [], priorities = [], categories = [], onSubmit }) {
     const { data, setData, put, post, processing, errors } = useForm({
         name: task?.name || '',
         description: task?.description || '',
         status: task?.status || 'pending',
         priority: task?.priority || 'medium',
         due_date: task?.due_date || '',
+        category_ids: task?.categories?.map(cat => cat.id) || [],
     });
+
+    const handleCheckboxChange = (categoryId) => {
+        if (data.category_ids.includes(categoryId)) {
+            setData('category_ids', data.category_ids.filter(id => id !== categoryId));
+        } else {
+            setData('category_ids', [...data.category_ids, categoryId]);
+        }
+    };
 
     const submit = (e) => {
         e.preventDefault();
@@ -75,7 +83,7 @@ export default function TaskForm({ task = null, statuses = [], priorities = [], 
                 {errors.priority && <div className="text-red-500 text-sm">{errors.priority}</div>}
             </div>
 
-            {/* Due Date & Time */}
+            {/* Due Date */}
             <div>
                 <label className="block text-sm font-medium text-gray-700">Due Date & Time</label>
                 <input
@@ -85,6 +93,24 @@ export default function TaskForm({ task = null, statuses = [], priorities = [], 
                     className="w-full border border-gray-300 rounded p-2"
                 />
                 {errors.due_date && <div className="text-red-500 text-sm">{errors.due_date}</div>}
+            </div>
+
+            {/* Categories */}
+            <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Categories</label>
+                <div className="flex flex-wrap gap-2">
+                    {categories.map(category => (
+                        <label key={category.id} className="flex items-center space-x-2">
+                            <input
+                                type="checkbox"
+                                checked={data.category_ids.includes(category.id)}
+                                onChange={() => handleCheckboxChange(category.id)}
+                            />
+                            <span className="text-sm">{category.name}</span>
+                        </label>
+                    ))}
+                </div>
+                {errors.category_ids && <div className="text-red-500 text-sm">{errors.category_ids}</div>}
             </div>
 
             {/* Submit */}

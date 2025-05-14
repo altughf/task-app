@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -26,10 +27,12 @@ class TaskController extends Controller
     {
         $statuses = ['pending', 'in_progress', 'completed', 'cancelled'];
         $priorities = ['low', 'medium', 'high'];
+        $categories = Category::all();
 
         return Inertia::render('Tasks/Create', [
             'statuses' => $statuses,
             'priorities' => $priorities,
+            'categories' => $categories,
         ]);
     }
 
@@ -44,9 +47,12 @@ class TaskController extends Controller
             'status' => 'required|in:pending,in_progress,completed,cancelled',
             'priority' => 'required|in:low,medium,high',
             'due_date' => 'nullable|date',
+            'category_ids' => 'nullable|array',
+            'category_ids.*' => 'exists:categories,id',
         ]);
 
-        Task::create($validated);
+        $task = Task::create($validated);
+        $task->categories()->sync($validated['category_ids'] ?? []);
 
         return redirect()->route('tasks.index');
     }
@@ -68,14 +74,16 @@ class TaskController extends Controller
      */
     public function edit(string $id)
     {
-        $task = Task::findOrFail($id);
+        $task = Task::with('categories')->findOrFail($id);
         $statuses = ['pending', 'in_progress', 'completed', 'cancelled'];
         $priorities = ['low', 'medium', 'high'];
+        $categories = Category::all();
 
         return Inertia::render('Tasks/Edit', [
             'task' => $task,
             'statuses' => $statuses,
             'priorities' => $priorities,
+            'categories' => $categories,
         ]);
     }
 
@@ -90,10 +98,13 @@ class TaskController extends Controller
             'status' => 'required|in:pending,in_progress,completed,cancelled',
             'priority' => 'required|in:low,medium,high',
             'due_date' => 'nullable|date',
+            'category_ids' => 'nullable|array',
+            'category_ids.*' => 'exists:categories,id',
         ]);
 
         $task = Task::findOrFail($id);
         $task->update($validated);
+        $task->categories()->sync($validated['category_ids'] ?? []);
 
         return redirect()->route('tasks.index');
     }

@@ -1,7 +1,7 @@
 import AppLayout from '@/Layouts/AppLayout';
 import TaskForm from './TaskForm';
 
-export default function Create({ statuses, priorities }) {
+export default function Create({ statuses, priorities, categories }) {
     const handleSubmit = ({ data, post }) => {
         post(route('tasks.store'));
     };
@@ -9,7 +9,12 @@ export default function Create({ statuses, priorities }) {
     return (
         <div className="max-w-xl mx-auto p-4">
             <h1 className="text-2xl font-bold mb-4">Create Task</h1>
-            <TaskForm onSubmit={handleSubmit} statuses={statuses} priorities={priorities} />
+            <TaskForm
+                onSubmit={handleSubmit}
+                statuses={statuses}
+                priorities={priorities}
+                categories={categories}
+            />
         </div>
     );
 }
