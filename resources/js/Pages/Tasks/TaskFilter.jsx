@@ -1,10 +1,10 @@
 import { useState } from 'react';
 
 export default function TaskFilter({ onFilterChange, initialFilters }) {
-    const [status, setStatus] = useState(initialFilters.status || '');
-    const [priority, setPriority] = useState(initialFilters.priority || '');
-    const [sort, setSort] = useState(initialFilters.sort || 'created_at');
-    const [direction, setDirection] = useState(initialFilters.direction || 'desc');
+    const [status, setStatus] = useState(initialFilters.status);
+    const [priority, setPriority] = useState(initialFilters.priority);
+    const [sort, setSort] = useState(initialFilters.sort);
+    const [direction, setDirection] = useState(initialFilters.direction);
 
     const handleSubmit = (e) => {
         e.preventDefault();

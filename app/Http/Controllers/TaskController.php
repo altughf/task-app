@@ -30,11 +30,17 @@ class TaskController extends Controller
         $direction = $request->direction ?: 'desc';
         $query->orderBy($sort, $direction);
 
+        // DB > QUERY
         $tasks = $query->get();
 
         return Inertia::render('Tasks/Index', [
             'tasks' => $tasks,
-            'filters' => $request->only(['status', 'priority', 'sort', 'direction']),
+            'filters' => [
+                'status' => $request->get('status', ''),
+                'priority' => $request->get('priority', ''),
+                'sort' => $request->get('sort', 'created_at'),
+                'direction' => $request->get('direction', 'desc'),
+            ],
         ]);
     }
 
