@@ -26,17 +26,15 @@ class TaskController extends Controller
         }
 
         // Sorting
-        if ($request->sort === 'due_date') {
-            $query->orderBy('due_date');
-        } elseif ($request->sort === 'created_at') {
-            $query->orderBy('created_at', 'desc');
-        }
+        $sort = $request->sort ?: 'created_at';
+        $direction = $request->direction ?: 'desc';
+        $query->orderBy($sort, $direction);
 
         $tasks = $query->get();
 
         return Inertia::render('Tasks/Index', [
             'tasks' => $tasks,
-            'filters' => $request->only(['status', 'priority', 'sort']),
+            'filters' => $request->only(['status', 'priority', 'sort', 'direction']),
         ]);
     }
 

@@ -1,13 +1,14 @@
 import { useState } from 'react';
 
-export default function TaskFilter({ onFilterChange }) {
-    const [status, setStatus] = useState('');
-    const [priority, setPriority] = useState('');
-    const [sort, setSort] = useState('');
+export default function TaskFilter({ onFilterChange, initialFilters }) {
+    const [status, setStatus] = useState(initialFilters.status || '');
+    const [priority, setPriority] = useState(initialFilters.priority || '');
+    const [sort, setSort] = useState(initialFilters.sort || 'created_at');
+    const [direction, setDirection] = useState(initialFilters.direction || 'desc');
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        onFilterChange({ status, priority, sort });
+        onFilterChange({ status, priority, sort, direction });
     };
 
     return (
@@ -48,9 +49,20 @@ export default function TaskFilter({ onFilterChange }) {
                     onChange={(e) => setSort(e.target.value)}
                     className="block border rounded pl-2 pr-16 py-1"
                 >
-                    <option value="">Default</option>
                     <option value="due_date">Due Date</option>
                     <option value="created_at">Created At</option>
+                </select>
+            </div>
+
+            <div>
+                <label>Direction</label>
+                <select
+                    value={direction}
+                    onChange={(e) => setDirection(e.target.value)}
+                    className="block border rounded pl-2 pr-16 py-1"
+                >
+                    <option value="asc">ASC</option>
+                    <option value="desc">DESC</option>
                 </select>
             </div>
 
