@@ -12,11 +12,31 @@ class TaskController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $tasks = Task::with('categories')->get();   // tasks with categories
+        $query = Task::with('categories');
+
+        // Filters
+        if ($request->status) {
+            $query->where('status', $request->status);
+        }
+
+        if ($request->priority) {
+            $query->where('priority', $request->priority);
+        }
+
+        // Sorting
+        if ($request->sort === 'due_date') {
+            $query->orderBy('due_date');
+        } elseif ($request->sort === 'created_at') {
+            $query->orderBy('created_at', 'desc');
+        }
+
+        $tasks = $query->get();
+
         return Inertia::render('Tasks/Index', [
-            'tasks' => $tasks
+            'tasks' => $tasks,
+            'filters' => $request->only(['status', 'priority', 'sort']),
         ]);
     }
 

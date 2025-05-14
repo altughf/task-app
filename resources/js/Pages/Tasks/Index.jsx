@@ -1,7 +1,8 @@
 import AppLayout from '@/Layouts/AppLayout';
 import { Link, useForm, router } from '@inertiajs/react';
+import TaskFilter from './TaskFilter';
 
-export default function Index({ tasks }) {
+export default function Index({ tasks, filters }) {
     const { delete: destroy } = useForm();
 
     const handleDelete = (id) => {
@@ -25,9 +26,20 @@ export default function Index({ tasks }) {
         });
     };
 
+    const handleFilterChange = (filters) => {
+        router.get(route('tasks.index'), filters, {
+            preserveState: true,
+            replace: true,
+        });
+    };
+
     return (
         <div className="max-w-2xl mx-auto p-4">
             <h1 className="text-2xl font-bold mb-4">Task List</h1>
+
+            {/* Filter Component */}
+            <TaskFilter onFilterChange={handleFilterChange} initialFilters={filters} />
+
             <ul className="space-y-4">
                 {tasks.map((task) => (
                     <li key={task.id} className="p-4 border border-gray-200 rounded shadow-sm">
