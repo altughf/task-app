@@ -35,7 +35,6 @@ export default function Index({ tasks }) {
                         <p className="text-gray-600">{task.description}</p>
 
                         <div className="mt-2">
-
                             <label className="block mt-2">
                                 <strong>Status:</strong>
                                 <select
@@ -54,6 +53,21 @@ export default function Index({ tasks }) {
                             <p><strong>Due Date:</strong> {task.due_date ? new Date(task.due_date).toLocaleString() : 'N/A'}</p>
                             <p><strong>Created At:</strong> {new Date(task.created_at).toLocaleString()}</p>
                             <p><strong>Updated At:</strong> {new Date(task.updated_at).toLocaleString()}</p>
+
+                            <div className="mt-2">
+                                <strong>Categories:</strong>
+                                <div className="mt-1 flex flex-wrap gap-2">
+                                    {task.categories.map(category => (
+                                        <span
+                                            key={category.id}
+                                            className="px-2 py-1 rounded text-white text-xs"
+                                            style={{ backgroundColor: category.color }}
+                                        >
+                                            {category.name}
+                                        </span>
+                                    ))}
+                                </div>
+                            </div>
                         </div>
 
                         <div className="mt-4 flex gap-2">

@@ -14,7 +14,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::all();
+        $tasks = Task::with('categories')->get();   // tasks with categories
         return Inertia::render('Tasks/Index', [
             'tasks' => $tasks
         ]);
@@ -62,7 +62,7 @@ class TaskController extends Controller
      */
     public function show(string $id)
     {
-        $task = Task::findOrFail($id);
+        $task = Task::with('categories')->findOrFail($id);  // task with categories
 
         return Inertia::render('Tasks/Show', [
             'task' => $task

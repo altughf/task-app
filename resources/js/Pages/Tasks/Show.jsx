@@ -16,13 +16,27 @@ export default function Show() {
             <h1 className="text-3xl font-semibold text-gray-900">{task.name}</h1>
             <p className="mt-2 text-lg text-gray-700">{task.description}</p>
 
-            {/* Yeni Eklenen Bilgiler */}
             <div className="mt-6 space-y-2 text-gray-800 text-sm">
                 <p><strong>Status:</strong> {task.status}</p>
                 <p><strong>Priority:</strong> {task.priority}</p>
                 <p><strong>Due Date:</strong> {task.due_date ? new Date(task.due_date).toLocaleString() : 'N/A'}</p>
                 <p><strong>Created At:</strong> {new Date(task.created_at).toLocaleString()}</p>
                 <p><strong>Updated At:</strong> {new Date(task.updated_at).toLocaleString()}</p>
+
+                <div>
+                    <strong>Categories:</strong>
+                    <div className="mt-1 flex flex-wrap gap-2">
+                        {task.categories.map(category => (
+                            <span
+                                key={category.id}
+                                className="px-2 py-1 rounded text-white text-xs"
+                                style={{ backgroundColor: category.color }}
+                            >
+                                {category.name}
+                            </span>
+                        ))}
+                    </div>
+                </div>
             </div>
 
             <div className="mt-8 flex items-center justify-between">
