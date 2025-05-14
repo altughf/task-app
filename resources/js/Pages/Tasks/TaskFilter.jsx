@@ -17,7 +17,7 @@ export default function TaskFilter({ onFilterChange }) {
                 <select
                     value={status}
                     onChange={(e) => setStatus(e.target.value)}
-                    className="block border rounded px-2 py-1"
+                    className="block border rounded pl-2 pr-16 py-1"
                 >
                     <option value="">All</option>
                     <option value="pending">Pending</option>
@@ -32,7 +32,7 @@ export default function TaskFilter({ onFilterChange }) {
                 <select
                     value={priority}
                     onChange={(e) => setPriority(e.target.value)}
-                    className="block border rounded px-2 py-1"
+                    className="block border rounded pl-2 pr-14 py-1"
                 >
                     <option value="">All</option>
                     <option value="low">Low</option>
@@ -46,7 +46,7 @@ export default function TaskFilter({ onFilterChange }) {
                 <select
                     value={sort}
                     onChange={(e) => setSort(e.target.value)}
-                    className="block border rounded px-2 py-1"
+                    className="block border rounded pl-2 pr-16 py-1"
                 >
                     <option value="">Default</option>
                     <option value="due_date">Due Date</option>
