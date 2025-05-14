@@ -1,4 +1,3 @@
-// CategoryForm.jsx
 import { useForm } from '@inertiajs/react';
 
 export default function CategoryForm({ category = null, onSubmit }) {
