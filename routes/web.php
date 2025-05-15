@@ -21,14 +21,14 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.index');
-Route::get('/tasks/create', [TaskController::class, 'create'])->name('tasks.create');
-Route::post('/tasks', [TaskController::class, 'store'])->name('tasks.store');
-Route::get('/tasks/{task}', [TaskController::class, 'show'])->name('tasks.show');
-Route::get('/tasks/{task}/edit', [TaskController::class, 'edit'])->name('tasks.edit');
-Route::put('/tasks/{task}', [TaskController::class, 'update'])->name('tasks.update');
-Route::patch('/tasks/{task}', [TaskController::class, 'status'])->name('tasks.status');
-Route::delete('/tasks/{task}', [TaskController::class, 'destroy'])->name('tasks.destroy');
+Route::get('/tasks', [TaskController::class, 'index'])->middleware('auth')->name('tasks.index');
+Route::get('/tasks/create', [TaskController::class, 'create'])->middleware('auth')->name('tasks.create');
+Route::post('/tasks', [TaskController::class, 'store'])->middleware('auth')->name('tasks.store');
+Route::get('/tasks/{task}', [TaskController::class, 'show'])->middleware('auth')->name('tasks.show');
+Route::get('/tasks/{task}/edit', [TaskController::class, 'edit'])->middleware('auth')->name('tasks.edit');
+Route::put('/tasks/{task}', [TaskController::class, 'update'])->middleware('auth')->name('tasks.update');
+Route::patch('/tasks/{task}', [TaskController::class, 'status'])->middleware('auth')->name('tasks.status');
+Route::delete('/tasks/{task}', [TaskController::class, 'destroy'])->middleware('auth')->name('tasks.destroy');
 
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
 Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');

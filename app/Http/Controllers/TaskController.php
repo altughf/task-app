@@ -14,7 +14,7 @@ class TaskController extends Controller
      */
     public function index(Request $request)
     {
-        $query = Task::with('categories');
+        $query = Task::with('categories')->where('user_id', auth()->id());
 
         // Search filter
         if ($request->search) {
@@ -85,6 +85,8 @@ class TaskController extends Controller
             'category_ids.*' => 'exists:categories,id',
         ]);
 
+        $validated['user_id'] = auth()->id(); // user_id > task
+
         $task = Task::create($validated);
         $task->categories()->sync($validated['category_ids'] ?? []);
 
@@ -109,6 +111,11 @@ class TaskController extends Controller
     public function edit(string $id)
     {
         $task = Task::with('categories')->findOrFail($id);
+
+        if ($task->user_id !== auth()->id()) {
+            return redirect()->route('tasks.index');
+        }
+
         $statuses = ['pending', 'in_progress', 'completed', 'cancelled'];
         $priorities = ['low', 'medium', 'high'];
         $categories = Category::all();
@@ -137,6 +144,11 @@ class TaskController extends Controller
         ]);
 
         $task = Task::findOrFail($id);
+
+        if ($task->user_id !== auth()->id()) {
+            return redirect()->route('tasks.index');
+        }
+
         $task->update($validated);
         $task->categories()->sync($validated['category_ids'] ?? []);
 
