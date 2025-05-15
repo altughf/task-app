@@ -36,10 +36,10 @@ class TaskController extends Controller
         return Inertia::render('Tasks/Index', [
             'tasks' => $tasks,
             'filters' => [
-                'status' => $request->get('status', ''),
-                'priority' => $request->get('priority', ''),
-                'sort' => $request->get('sort', 'created_at'),
-                'direction' => $request->get('direction', 'desc'),
+                'status' => $request->get('status') ?? '',
+                'priority' => $request->get('priority') ?? '',
+                'sort' => $request->get('sort') ?? 'created_at',
+                'direction' => $request->get('direction') ?? 'desc',
             ],
         ]);
     }
