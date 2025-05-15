@@ -16,7 +16,14 @@ class TaskController extends Controller
     {
         $query = Task::with('categories');
 
-        // Filters
+        // Search filter
+        if ($request->search) {
+            $query->where(function ($q) use ($request) {
+                $q->where('name', 'like', '%' . $request->search . '%')
+                ->orWhere('description', 'like', '%' . $request->search . '%');
+            });
+        }
+
         if ($request->status) {
             $query->where('status', $request->status);
         }
@@ -36,6 +43,7 @@ class TaskController extends Controller
         return Inertia::render('Tasks/Index', [
             'tasks' => $tasks,
             'filters' => [
+                'search' => $request->get('search') ?? '',
                 'status' => $request->get('status') ?? '',
                 'priority' => $request->get('priority') ?? '',
                 'sort' => $request->get('sort') ?? 'created_at',

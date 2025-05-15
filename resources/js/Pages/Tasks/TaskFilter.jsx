@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 export default function TaskFilter({ onFilterChange, initialFilters }) {
+    const [search, setSearch] = useState(initialFilters.search || '');
     const [status, setStatus] = useState(initialFilters.status);
     const [priority, setPriority] = useState(initialFilters.priority);
     const [sort, setSort] = useState(initialFilters.sort);
@@ -8,11 +9,22 @@ export default function TaskFilter({ onFilterChange, initialFilters }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        onFilterChange({ status, priority, sort, direction });
+        onFilterChange({ search, status, priority, sort, direction });
     };
 
     return (
-        <form onSubmit={handleSubmit} className="mb-6 flex gap-4 items-end">
+        <form onSubmit={handleSubmit} className="mb-6 flex flex-wrap gap-4 items-end">
+            <div>
+                <label>Search</label>
+                <input
+                    type="text"
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    placeholder="Search by name or description"
+                    className="block border rounded px-2 py-1 w-80"
+                />
+            </div>
+
             <div>
                 <label>Status</label>
                 <select
