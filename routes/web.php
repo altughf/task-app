@@ -30,12 +30,12 @@ Route::put('/tasks/{task}', [TaskController::class, 'update'])->middleware('auth
 Route::patch('/tasks/{task}', [TaskController::class, 'status'])->middleware('auth')->name('tasks.status');
 Route::delete('/tasks/{task}', [TaskController::class, 'destroy'])->middleware('auth')->name('tasks.destroy');
 
-Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
-Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
-Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
-Route::get('/categories/{category}', [CategoryController::class, 'show'])->name('categories.show');
-Route::get('/categories/{category}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
-Route::put('/categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
-Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+Route::get('/categories', [CategoryController::class, 'index'])->middleware('auth')->name('categories.index');
+Route::get('/categories/create', [CategoryController::class, 'create'])->middleware('auth')->name('categories.create');
+Route::post('/categories', [CategoryController::class, 'store'])->middleware('auth')->name('categories.store');
+Route::get('/categories/{category}', [CategoryController::class, 'show'])->middleware('auth')->name('categories.show');
+Route::get('/categories/{category}/edit', [CategoryController::class, 'edit'])->middleware('auth')->name('categories.edit');
+Route::put('/categories/{category}', [CategoryController::class, 'update'])->middleware('auth')->name('categories.update');
+Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->middleware('auth')->name('categories.destroy');
 
 require __DIR__.'/auth.php';
