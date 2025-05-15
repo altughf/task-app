@@ -1,6 +1,7 @@
 import AppLayout from '@/Layouts/AppLayout';
 import { Link, useForm, router } from '@inertiajs/react';
 import TaskFilter from './TaskFilter';
+import Pagination from './Pagination';
 
 export default function Index({ tasks, filters }) {
     const { delete: destroy } = useForm();
@@ -41,7 +42,7 @@ export default function Index({ tasks, filters }) {
             <TaskFilter onFilterChange={handleFilterChange} initialFilters={filters} />
 
             <ul className="space-y-4">
-                {tasks.map((task) => (
+                {tasks.data.map((task) => (
                     <li key={task.id} className="p-4 border border-gray-200 rounded shadow-sm">
                         <h2 className="text-lg font-semibold">{task.name}</h2>
                         <p className="text-gray-600">{task.description}</p>
@@ -105,6 +106,10 @@ export default function Index({ tasks, filters }) {
                     </li>
                 ))}
             </ul>
+
+            {tasks.data.length > 0 && tasks.last_page > 1 && (
+                <Pagination links={tasks.links} />
+            )}
         </div>
     );
 }

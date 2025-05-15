@@ -6,10 +6,11 @@ export default function TaskFilter({ onFilterChange, initialFilters }) {
     const [priority, setPriority] = useState(initialFilters.priority);
     const [sort, setSort] = useState(initialFilters.sort);
     const [direction, setDirection] = useState(initialFilters.direction);
+    const [perPage, setPerPage] = useState(initialFilters.per_page || 10);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        onFilterChange({ search, status, priority, sort, direction });
+        onFilterChange({ search, status, priority, sort, direction, per_page: perPage });
     };
 
     return (
@@ -75,6 +76,21 @@ export default function TaskFilter({ onFilterChange, initialFilters }) {
                 >
                     <option value="asc">ASC</option>
                     <option value="desc">DESC</option>
+                </select>
+            </div>
+
+            <div>
+                <label>Per Page</label>
+                <select
+                    value={perPage}
+                    onChange={(e) => setPerPage(e.target.value)}
+                    className="block border rounded pl-2 pr-16 py-1"
+                >
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                    <option value="40">40</option>
+                    <option value="50">50</option>
                 </select>
             </div>
 

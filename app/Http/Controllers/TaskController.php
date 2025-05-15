@@ -37,8 +37,9 @@ class TaskController extends Controller
         $direction = $request->direction ?: 'desc';
         $query->orderBy($sort, $direction);
 
-        // DB > QUERY
-        $tasks = $query->get();
+        // Pagination
+        $perPage = $request->per_page ?: 10;
+        $tasks = $query->paginate($perPage)->withQueryString();
 
         return Inertia::render('Tasks/Index', [
             'tasks' => $tasks,
@@ -48,6 +49,7 @@ class TaskController extends Controller
                 'priority' => $request->get('priority') ?? '',
                 'sort' => $request->get('sort') ?? 'created_at',
                 'direction' => $request->get('direction') ?? 'desc',
+                'per_page' => $request->get('per_page') ?? 10,
             ],
         ]);
     }
