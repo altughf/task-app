@@ -1,4 +1,5 @@
 import React from 'react';
+import { Head } from '@inertiajs/react';
 import { usePage, Link, router } from '@inertiajs/react';
 import AppLayout from '@/Layouts/AppLayout';
 
@@ -12,6 +13,11 @@ export default function Show() {
     };
 
     return (
+
+        <>
+
+        <Head title="Category" />
+
         <div className="max-w-3xl mx-auto p-6 bg-white shadow-lg rounded">
             <h1 className="text-3xl font-semibold text-gray-900">{category.name}</h1>
 
@@ -51,6 +57,8 @@ export default function Show() {
                 </div>
             </div>
         </div>
+
+        </>
     );
 }
 

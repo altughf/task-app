@@ -1,3 +1,5 @@
+import React from 'react';
+import { Head } from '@inertiajs/react';
 import AppLayout from '@/Layouts/AppLayout';
 import CategoryForm from './CategoryForm';
 import { Link } from '@inertiajs/react';
@@ -8,6 +10,11 @@ export default function Create() {
     };
 
     return (
+
+        <>
+
+        <Head title="Create Category" />
+
         <div className="max-w-xl mx-auto p-4">
             <h1 className="text-2xl font-bold mb-4">Create Category</h1>
 
@@ -22,6 +29,8 @@ export default function Create() {
                 </Link>
             </div>
         </div>
+
+        </>
     );
 }
 

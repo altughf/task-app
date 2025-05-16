@@ -1,3 +1,5 @@
+import React from 'react';
+import { Head } from '@inertiajs/react';
 import AppLayout from '@/Layouts/AppLayout';
 import { Link, useForm, router } from '@inertiajs/react';
 import TaskFilter from './TaskFilter';
@@ -35,6 +37,11 @@ export default function Index({ tasks, filters }) {
     };
 
     return (
+
+        <>
+
+        <Head title="Task List" />
+
         <div className="max-w-2xl mx-auto p-4">
             <h1 className="text-2xl font-bold mb-4">Task List</h1>
 
@@ -111,6 +118,8 @@ export default function Index({ tasks, filters }) {
                 <Pagination links={tasks.links} />
             )}
         </div>
+
+        </>
     );
 }
 

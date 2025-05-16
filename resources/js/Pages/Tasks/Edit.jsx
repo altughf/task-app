@@ -1,3 +1,5 @@
+import React from 'react';
+import { Head } from '@inertiajs/react';
 import AppLayout from '@/Layouts/AppLayout';
 import TaskForm from './TaskForm';
 
@@ -7,6 +9,11 @@ export default function Edit({ task, statuses, priorities, categories }) {
     };
 
     return (
+
+        <>
+
+        <Head title="Edit Task" />
+        
         <div className="max-w-xl mx-auto p-4">
             <h1 className="text-2xl font-bold mb-4">Edit Task</h1>
             <TaskForm
@@ -17,6 +24,8 @@ export default function Edit({ task, statuses, priorities, categories }) {
                 categories={categories}
             />
         </div>
+
+        </>
     );
 }
 
