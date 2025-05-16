@@ -1,6 +1,6 @@
 import React from 'react';
 import { Head } from '@inertiajs/react';
-import AppLayout from '@/Layouts/AppLayout';
+import DashLayout from '@/Layouts/DashLayout';
 import CategoryForm from './CategoryForm';
 import { Link } from '@inertiajs/react';
 
@@ -34,4 +34,4 @@ export default function Edit({ category }) {
     );
 }
 
-Edit.layout = (page) => <AppLayout children={page} />;
+Edit.layout = (page) => <DashLayout children={page} />;

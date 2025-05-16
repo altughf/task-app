@@ -1,6 +1,6 @@
 import React from 'react';
 import { Head } from '@inertiajs/react';
-import AppLayout from '@/Layouts/AppLayout';
+import DashLayout from '@/Layouts/DashLayout';
 import { Link, useForm } from '@inertiajs/react';
 
 export default function Index({ categories }) {
@@ -70,4 +70,4 @@ export default function Index({ categories }) {
     );
 }
 
-Index.layout = (page) => <AppLayout children={page} />;
+Index.layout = (page) => <DashLayout children={page} />;

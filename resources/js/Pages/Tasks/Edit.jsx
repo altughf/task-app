@@ -1,6 +1,6 @@
 import React from 'react';
 import { Head } from '@inertiajs/react';
-import AppLayout from '@/Layouts/AppLayout';
+import DashLayout from '@/Layouts/DashLayout';
 import TaskForm from './TaskForm';
 
 export default function Edit({ task, statuses, priorities, categories }) {
@@ -29,4 +29,4 @@ export default function Edit({ task, statuses, priorities, categories }) {
     );
 }
 
-Edit.layout = (page) => <AppLayout children={page} />;
+Edit.layout = (page) => <DashLayout children={page} />;

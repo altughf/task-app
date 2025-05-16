@@ -1,7 +1,7 @@
 import React from 'react';
 import { Head } from '@inertiajs/react';
 import { usePage, Link, router } from '@inertiajs/react';
-import AppLayout from '@/Layouts/AppLayout';
+import DashLayout from '@/Layouts/DashLayout';
 
 export default function Show() {
     const { task } = usePage().props;
@@ -73,4 +73,4 @@ export default function Show() {
     );
 }
 
-Show.layout = (page) => <AppLayout children={page} />;
+Show.layout = (page) => <DashLayout children={page} />;

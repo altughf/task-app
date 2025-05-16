@@ -1,6 +1,6 @@
 import React from 'react';
 import { Head } from '@inertiajs/react';
-import AppLayout from '@/Layouts/AppLayout';
+import DashLayout from '@/Layouts/DashLayout';
 import { Link, useForm, router } from '@inertiajs/react';
 import TaskFilter from './TaskFilter';
 import Pagination from './Pagination';
@@ -126,4 +126,4 @@ export default function Index({ tasks, filters }) {
     );
 }
 
-Index.layout = (page) => <AppLayout children={page} />;
+Index.layout = (page) => <DashLayout children={page} />;

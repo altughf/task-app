@@ -1,6 +1,6 @@
 import React from 'react';
 import { Head } from '@inertiajs/react';
-import AppLayout from '@/Layouts/AppLayout';
+import DashLayout from '@/Layouts/DashLayout';
 import TaskForm from './TaskForm';
 
 export default function Create({ statuses, priorities, categories }) {
@@ -27,4 +27,4 @@ export default function Create({ statuses, priorities, categories }) {
     );
 }
 
-Create.layout = (page) => <AppLayout children={page} />;
+Create.layout = (page) => <DashLayout children={page} />;
