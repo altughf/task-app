@@ -62,9 +62,6 @@ export default function DashLayout({ children }) {
                         {/* Navigation Links */}
                         <nav className="space-x-4 flex items-center">
                             <DropLinks trigger={user.name}>
-                                <Link href={route('dashboard')}>
-                                    Dashboard
-                                </Link>
                                 <Link href={route('profile.edit')}>
                                     Profile
                                 </Link>

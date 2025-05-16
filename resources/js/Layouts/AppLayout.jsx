@@ -8,8 +8,8 @@ export default function AppLayout({ children }) {
     const user = auth.user;
 
     return (
-        <div className="min-h-screen bg-gray-100">
-            <header className="bg-white shadow">
+        <div className="flex flex-col min-h-screen bg-gray-100">
+            <header className="bg-white border-b border-neutral-300">
                 <div className="max-w-7xl mx-auto flex items-center justify-between py-6 px-4 sm:px-6 lg:px-8">
                     {/* LOGO */}
                     <Link href="/">
@@ -20,23 +20,11 @@ export default function AppLayout({ children }) {
                     <nav className="space-x-4 flex items-center">
                         {user ? (
                             <>
-                                <Link href="/tasks" className="text-gray-700 hover:text-indigo-600 transition">
-                                    Tasks
-                                </Link>
-                                <Link href="/tasks/create" className="text-gray-700 hover:text-indigo-600 transition">
-                                    New Task
-                                </Link>
-                                <Link href="/categories" className="text-gray-700 hover:text-indigo-600 transition">
-                                    Categories
-                                </Link>
-                                <Link href="/categories/create" className="text-gray-700 hover:text-indigo-600 transition">
-                                    New Category
+                                <Link href="/dashboard" className="font-semibold text-gray-700 hover:text-indigo-600 transition">
+                                    Dashboard
                                 </Link>
 
                                 <DropLinks trigger={user.name}>
-                                    <Link href={route('dashboard')}>
-                                        Dashboard
-                                    </Link>
                                     <Link href={route('profile.edit')}>
                                         Profile
                                     </Link>
@@ -59,7 +47,7 @@ export default function AppLayout({ children }) {
                 </div>
             </header>
 
-            <main className="py-8 px-4">
+            <main className="flex-grow py-8 px-4">
                 {children}
             </main>
 

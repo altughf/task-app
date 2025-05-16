@@ -1,5 +1,5 @@
 import React from 'react';
-import AppLayout from '@/Layouts/AppLayout';
+import DashLayout from '@/Layouts/DashLayout';
 import { Head } from '@inertiajs/react';
 
 export default function Dashboard() {
@@ -20,5 +20,4 @@ export default function Dashboard() {
     );
 }
 
-// AppLayout kullanımı
-Dashboard.layout = (page) => <AppLayout children={page} />;
+Dashboard.layout = (page) => <DashLayout children={page} />;
