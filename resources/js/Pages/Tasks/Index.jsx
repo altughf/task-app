@@ -42,7 +42,7 @@ export default function Index({ tasks, filters }) {
 
         <Head title="Task List" />
 
-        <div className="max-w-2xl mx-auto p-4">
+        <div className="max-w-4xl mx-auto p-4">
             <h1 className="text-2xl font-bold mb-4">Task List</h1>
 
             {/* Filter Component */}
@@ -50,11 +50,13 @@ export default function Index({ tasks, filters }) {
 
             <ul className="space-y-4">
                 {tasks.data.map((task) => (
-                    <li key={task.id} className="p-4 border border-gray-200 rounded shadow-sm">
-                        <h2 className="text-lg font-semibold">{task.name}</h2>
+                    <li key={task.id} className="flex items-start justify-between gap-2 p-4 border border-gray-200 rounded shadow-sm">
+                        
+                        <div className='flex flex-col gap-2'>
+                        <h2 className="text-xl font-bold">{task.name}</h2>
                         <p className="text-gray-600">{task.description}</p>
 
-                        <div className="mt-2">
+                        <div className="flex flex-col gap-2">
                             <label className="block mt-2">
                                 <strong>Status:</strong>
                                 <select
@@ -74,9 +76,9 @@ export default function Index({ tasks, filters }) {
                             <p><strong>Created At:</strong> {new Date(task.created_at).toLocaleString()}</p>
                             <p><strong>Updated At:</strong> {new Date(task.updated_at).toLocaleString()}</p>
 
-                            <div className="mt-2">
+                            <div className="flex justify-start items-center gap-2 mt-2">
                                 <strong>Categories:</strong>
-                                <div className="mt-1 flex flex-wrap gap-2">
+                                <div className="flex flex-wrap gap-2">
                                     {task.categories.map(category => (
                                         <span
                                             key={category.id}
@@ -89,8 +91,9 @@ export default function Index({ tasks, filters }) {
                                 </div>
                             </div>
                         </div>
+                        </div>
 
-                        <div className="mt-4 flex gap-2">
+                        <div className="flex gap-2">
                             <Link
                                 href={route('tasks.show', task.id)}
                                 className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-200"
