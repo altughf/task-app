@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link, usePage } from '@inertiajs/react';
 import ApplicationLogo from '@/Components/ApplicationLogo';
+import DropLinks from '@/Components/DropLinks';
 
 export default function AppLayout({ children }) {
-    const user = usePage().props.auth.user;
+    const { auth } = usePage().props;
+    const user = auth.user;
 
     return (
         <div className="min-h-screen bg-gray-100">
@@ -31,16 +33,17 @@ export default function AppLayout({ children }) {
                                     New Category
                                 </Link>
 
-                                {/* Dropdown kaldırıldı, linkler direkt eklendi */}
-                                <Link href={route('dashboard')} className="text-gray-700 hover:text-indigo-600 transition ms-4">
-                                    Dashboard
-                                </Link>
-                                <Link href={route('profile.edit')} className="text-gray-700 hover:text-indigo-600 transition">
-                                    Profile
-                                </Link>
-                                <Link href={route('logout')} method="post" as="button" className="text-gray-700 hover:text-indigo-600 transition">
-                                    Log Out
-                                </Link>
+                                <DropLinks trigger={user.name}>
+                                    <Link href={route('dashboard')}>
+                                        Dashboard
+                                    </Link>
+                                    <Link href={route('profile.edit')}>
+                                        Profile
+                                    </Link>
+                                    <Link href={route('logout')} method="post" as="button">
+                                        Log Out
+                                    </Link>
+                                </DropLinks>
                             </>
                         ) : (
                             <>
