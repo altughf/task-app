@@ -18,43 +18,30 @@ export default function DashLayout({ children }) {
 
                     {/* Navigation Links */}
                     <nav className="space-x-4 flex items-center">
-                        {user ? (
-                            <>
-                                <Link href="/tasks" className="text-gray-700 hover:text-indigo-600 transition">
-                                    Tasks
-                                </Link>
-                                <Link href="/tasks/create" className="text-gray-700 hover:text-indigo-600 transition">
-                                    New Task
-                                </Link>
-                                <Link href="/categories" className="text-gray-700 hover:text-indigo-600 transition">
-                                    Categories
-                                </Link>
-                                <Link href="/categories/create" className="text-gray-700 hover:text-indigo-600 transition">
-                                    New Category
-                                </Link>
+                        <Link href="/tasks" className="text-gray-700 hover:text-indigo-600 transition">
+                            Tasks
+                        </Link>
+                        <Link href="/tasks/create" className="text-gray-700 hover:text-indigo-600 transition">
+                            New Task
+                        </Link>
+                        <Link href="/categories" className="text-gray-700 hover:text-indigo-600 transition">
+                            Categories
+                        </Link>
+                        <Link href="/categories/create" className="text-gray-700 hover:text-indigo-600 transition">
+                            New Category
+                        </Link>
 
-                                <DropLinks trigger={user.name}>
-                                    <Link href={route('dashboard')}>
-                                        Dashboard
-                                    </Link>
-                                    <Link href={route('profile.edit')}>
-                                        Profile
-                                    </Link>
-                                    <Link href={route('logout')} method="post" as="button">
-                                        Log Out
-                                    </Link>
-                                </DropLinks>
-                            </>
-                        ) : (
-                            <>
-                                <Link href={route('login')} className="text-gray-700 hover:text-indigo-600 transition">
-                                    Login
-                                </Link>
-                                <Link href={route('register')} className="text-gray-700 hover:text-indigo-600 transition">
-                                    Register
-                                </Link>
-                            </>
-                        )}
+                        <DropLinks trigger={user.name}>
+                            <Link href={route('dashboard')}>
+                                Dashboard
+                            </Link>
+                            <Link href={route('profile.edit')}>
+                                Profile
+                            </Link>
+                            <Link href={route('logout')} method="post" as="button">
+                                Log Out
+                            </Link>
+                        </DropLinks>
                     </nav>
                 </div>
             </header>
