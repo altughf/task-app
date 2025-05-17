@@ -2,7 +2,7 @@ import React from 'react';
 import DashLayout from '@/Layouts/DashLayout';
 import { Head } from '@inertiajs/react';
 
-export default function Dashboard() {
+export default function Dashboard({ taskCount, categoryCount }) {
     return (
         <>
             <Head title="Dashboard" />
@@ -12,16 +12,20 @@ export default function Dashboard() {
 
                     <div className='flex w-full h-[640px] gap-4'>
 
-                        <div className='flex flex-col w-full h-full gap-4 bg-neutral-400'>
+                        <div className='flex flex-col w-full h-full gap-4'>
 
                             <div className='flex w-full h-full gap-4'>
-                                <div className='flex w-full h-full bg-neutral-500'>
-                                    <div>TASKS</div>
-
+                                <div className='flex w-full h-full bg-neutral-500 items-center justify-center'>
+                                    <div className="text-center">
+                                        <div className="text-xl font-bold">TASKS</div>
+                                        <div className="text-3xl">{taskCount}</div>
+                                    </div>
                                 </div>
-                                <div className='flex w-full h-full bg-neutral-500'>
-                                    <div>CATEGORIES</div>
-
+                                <div className='flex w-full h-full bg-neutral-500 items-center justify-center'>
+                                    <div className="text-center">
+                                        <div className="text-xl font-bold">CATEGORIES</div>
+                                        <div className="text-3xl">{categoryCount}</div>
+                                    </div>
                                 </div>
                             </div>
 
