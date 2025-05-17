@@ -47,7 +47,7 @@ const DropLinks = ({ children, trigger }) => {
             </button>
 
             {isOpen && (
-                <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
+                <div className="absolute right-0 mt-2 w-48 bg-white rounded-md border border-neutral-300 py-1 z-50">
                     {React.Children.map(children, (child) => {
                         // Add onClick to close droplinks when any child is clicked
                         return React.cloneElement(child, {
