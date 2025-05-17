@@ -14,14 +14,14 @@ export default function TaskFilter({ onFilterChange, initialFilters }) {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="mb-6 flex flex-wrap gap-4 items-end">
+        <form onSubmit={handleSubmit} className="mb-6 pl-5 pr-5 pt-3 pb-5 rounded-lg bg-white flex flex-wrap gap-4 items-end">
             <div>
                 <label>Search</label>
                 <input
                     type="text"
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
-                    placeholder="Search by name or description"
+                    placeholder="Type name & description"
                     className="block border rounded px-2 py-1 w-80"
                 />
             </div>
@@ -31,7 +31,7 @@ export default function TaskFilter({ onFilterChange, initialFilters }) {
                 <select
                     value={status}
                     onChange={(e) => setStatus(e.target.value)}
-                    className="block border rounded pl-2 pr-16 py-1"
+                    className="block border rounded pl-2 pr-12 py-1"
                 >
                     <option value="">All</option>
                     <option value="pending">Pending</option>
@@ -46,7 +46,7 @@ export default function TaskFilter({ onFilterChange, initialFilters }) {
                 <select
                     value={priority}
                     onChange={(e) => setPriority(e.target.value)}
-                    className="block border rounded pl-2 pr-14 py-1"
+                    className="block border rounded pl-2 pr-12 py-1"
                 >
                     <option value="">All</option>
                     <option value="low">Low</option>
