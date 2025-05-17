@@ -21,6 +21,9 @@ export default function DashLayout({ children }) {
                 </Link>
 
                 <nav className='flex flex-col divide-y border-b border-neutral-300 divide-neutral-200'>
+                    <Link href="/dashboard" className="py-4 pl-4 pr-4 bg-neutral-50 font-bold text-xl text-neutral-500 hover:text-indigo-600 transition">
+                        Dashboard
+                    </Link>
                     <Link href="/tasks" className="py-4 pl-4 pr-4 bg-neutral-50 text-lg text-neutral-500 hover:text-indigo-600 transition">
                         Tasks
                     </Link>
