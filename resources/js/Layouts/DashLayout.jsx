@@ -73,11 +73,11 @@ export default function DashLayout({ children }) {
                     </div>
                 </header>
 
-                <main className="py-8 h-screen px-4">
+                <main className="py-8 min-h-screen bg-neutral-200 px-4">
                     {children}
                 </main>
 
-                <footer className="bg-white mt-8 py-4 text-center text-sm text-gray-500">
+                <footer className="bg-white py-4 text-center text-sm text-gray-500">
                     &copy; {new Date().getFullYear()} Task App
                 </footer>
             </div>

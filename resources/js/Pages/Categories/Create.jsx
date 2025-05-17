@@ -23,7 +23,7 @@ export default function Create() {
             <div className="pt-4">
                 <Link
                     href={route('categories.index')}
-                    className="bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 transition duration-200"
+                    className="bg-neutral-50 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 transition duration-200"
                 >
                     Go Back
                 </Link>

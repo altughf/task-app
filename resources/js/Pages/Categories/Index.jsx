@@ -25,7 +25,7 @@ export default function Index({ categories }) {
                 {categories.map((category) => (
                     <li
                         key={category.id}
-                        className="p-4 border border-gray-200 rounded shadow-sm"
+                        className="p-4 border border-gray-200 bg-white rounded"
                     >
                         <h2 className="text-lg font-semibold">{category.name}</h2>
 

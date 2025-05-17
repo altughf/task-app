@@ -50,7 +50,7 @@ export default function Index({ tasks, filters }) {
 
             <ul className="space-y-4">
                 {tasks.data.map((task) => (
-                    <li key={task.id} className="flex items-start justify-between gap-2 p-4 border border-gray-200 rounded shadow-sm">
+                    <li key={task.id} className="flex items-start justify-between gap-2 p-4 border border-gray-200 bg-white rounded">
                         
                         <div className='flex flex-col gap-2'>
                         <h2 className="text-xl font-bold">{task.name}</h2>
