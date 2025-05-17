@@ -20,11 +20,10 @@ export default function AppLayout({ children }) {
                     <nav className="space-x-4 flex items-center">
                         {user ? (
                             <>
-                                <Link href="/dashboard" className="font-semibold text-gray-700 hover:text-indigo-600 transition">
-                                    Dashboard
-                                </Link>
-
                                 <DropLinks trigger={user.name}>
+                                    <Link href={route('dashboard')}>
+                                        Dashboard
+                                    </Link>
                                     <Link href={route('profile.edit')}>
                                         Profile
                                     </Link>
