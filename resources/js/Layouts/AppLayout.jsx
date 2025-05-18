@@ -34,10 +34,10 @@ export default function AppLayout({ children }) {
                             </>
                         ) : (
                             <>
-                                <Link href={route('login')} className="text-gray-700 hover:text-indigo-600 transition">
+                                <Link href={route('login')} className="flex h-10 w-24 justify-center items-center border border-indigo-600 text-indigo-600 rounded-md hover:bg-indigo-50 transition">
                                     Login
                                 </Link>
-                                <Link href={route('register')} className="text-gray-700 hover:text-indigo-600 transition">
+                                <Link href={route('register')} className="flex h-10 w-32 justify-center items-center border border-gray-400 text-gray-700 rounded-md hover:bg-gray-100 transition">
                                     Register
                                 </Link>
                             </>
