@@ -93,4 +93,38 @@ class CategoryController extends Controller
 
         return redirect()->route('categories.index');
     }
+
+    public function list(Request $request, Category $category)
+    {
+        $query = $category->tasks()->with('categories')->where('user_id', auth()->id());
+
+        if ($request->status) {
+            $query->where('status', $request->status);
+        }
+
+        if ($request->priority) {
+            $query->where('priority', $request->priority);
+        }
+
+        // Sorting
+        $sort = $request->sort ?: 'created_at';
+        $direction = $request->direction ?: 'desc';
+        $query->orderBy($sort, $direction);
+
+        // Pagination
+        $perPage = $request->per_page ?: 10;
+        $tasks = $query->paginate($perPage)->withQueryString();
+
+        return Inertia::render('Categories/TaskList', [
+            'category' => $category,
+            'tasks' => $tasks,
+            'filters' => [
+                'status' => $request->get('status') ?? '',
+                'priority' => $request->get('priority') ?? '',
+                'sort' => $request->get('sort') ?? 'created_at',
+                'direction' => $request->get('direction') ?? 'desc',
+                'per_page' => $request->get('per_page') ?? 10,
+            ],
+        ]);
+    }
 }

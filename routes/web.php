@@ -37,4 +37,6 @@ Route::get('/categories/{category}/edit', [CategoryController::class, 'edit'])->
 Route::put('/categories/{category}', [CategoryController::class, 'update'])->middleware('auth')->name('categories.update');
 Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->middleware('auth')->name('categories.destroy');
 
+Route::get('/categories/{category}/tasks', [CategoryController::class, 'list'])->middleware('auth')->name('categories.list');
+
 require __DIR__.'/auth.php';
