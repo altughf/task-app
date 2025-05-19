@@ -41,7 +41,9 @@ export default function Index({ categories }) {
                         <p className="text-gray-600">Created: {new Date(category.created_at).toLocaleString()}</p>
                         <p className="text-gray-600">Updated: {new Date(category.updated_at).toLocaleString()}</p>
 
-                        <div className="mt-4 flex gap-2">
+                        <div className="mt-4 flex justify-between gap-2">
+
+                        <div className="flex gap-2">
                             <Link
                                 href={route('categories.show', category.id)}
                                 className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
@@ -60,6 +62,15 @@ export default function Index({ categories }) {
                             >
                                 Delete
                             </button>
+                        </div>
+
+                        <Link
+                            href={route('categories.list', category.id)}
+                            className="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition"
+                        >
+                            Tasks
+                        </Link>
+
                         </div>
                     </li>
                 ))}
