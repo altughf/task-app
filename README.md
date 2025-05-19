@@ -14,6 +14,7 @@ Task Management App SPA built with Laravel 12, React, Inertia.js, Tailwind CSS, 
 - Status changes on task list
 - Pagination with filtered tasks
 - Searching tasks & filter at same time
+- Category tasks page
 - Users can update name, mail address & password
 
 ## Technologies Used
